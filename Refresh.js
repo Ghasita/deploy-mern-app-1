@@ -1,0 +1,27 @@
+import React, { useEffect } from 'react'
+import { replace, useLocation, useNavigate } from 'react-router-dom'
+
+const Refresh = ({ setIsAuthenticated }) => {
+    const location = useLocation();
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (localStorage.getItem('token')) {
+            setIsAuthenticated(true);
+            if (
+                location.pathname === '/'
+                || location.pathname === '/login'
+                || location.pathname === '/signup'
+
+            ) {
+                navigate('/home', { replace: false })
+            }
+        }
+    }, [location, navigate, setIsAuthenticated])
+    return (
+        <div>
+            Hello
+        </div>
+    )
+}
+
+export default Refresh
